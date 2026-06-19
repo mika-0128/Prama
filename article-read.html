@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Article</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/articles.css">
+</head>
+<body>
+
+<div class="app-container" style="background: white;">
+  <header class="overlay-header" style="position: sticky; top:0; z-index:10; background:white;">
+    <a href="articles.html" class="back-overlay-btn" style="text-decoration: none;"><i class="fa-solid fa-chevron-left"></i> Back to Feed</a>
+    <button class="bookmark-overlay-btn" style="background:none; border:none; color:#ef8ea0;"><i class="fa-regular fa-bookmark"></i></button>
+  </header>
+
+  <main style="padding: 28px 22px;">
+    <span class="overlay-tag-label" style="background: rgba(239,142,160,0.15); color: #ef8ea0; font-weight:600;" id="artTag">TRENDING STORIES</span>
+    <h1 id="artTitle" style="font-size: 32px; color: #1d4f80; font-family: 'Cormorant Garamond', serif; font-weight: 700; margin-top: 12px; line-height:1.2;">Loading Article...</h1>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; font-size:12px; color:#999; border-bottom:1px solid #eee; padding-bottom:16px;">
+      <span id="artAuthor">By Prama Team</span>
+      <span id="artTime"><i class="fa-regular fa-clock"></i> 5 min read</span>
+    </div>
+
+    <div id="artBody" class="rich-content" style="margin-top:24px;"></div>
+  </main>
+</div>
+
+<script>
+  const ARTICLES_DB = {
+    "art-101": {
+      title: "The Cortisol Connection: Stress and Your Cycle",
+      author: "Prama Clinical Team",
+      time: "4 min read",
+      body: "<p>Daily life stress triggers your adrenal glands to dump cortisol directly into your bloodstream. When cortisol spike signatures remain elevated constantly, your brain views it as an unsafe state for reproductive allocation.</p><p>As a response, your hypothalamus down-regulates signaling indicators to your ovaries, frequently pausing ovulation entirely. This causes unpredictable cycle maps or temporary skipped windows.</p>"
+    },
+    "art-102": {
+      title: "Understanding PCOS: Beyond the Cysts",
+      author: "Dr. Sarah Jenkins",
+      time: "6 min read",
+      body: "<p>Polycystic Ovary Syndrome (PCOS) is one of the most misunderstood endocrine disorders. The name implies that cysts on the ovaries are the primary problem, but PCOS is actually rooted in systemic metabolic and hormonal dysfunction.</p><p>For many women with PCOS, the core issue is <strong>insulin resistance</strong>. High insulin levels trigger the ovaries to produce excess testosterone, which halts the normal development and release of an egg. This results in the characteristic irregular cycles, acne, and hair growth. Understanding this metabolic root is the first step in effective management.</p>"
+    },
+    "art-103": {
+      title: "Endometriosis vs. Normal Cramps",
+      author: "Dr. Elena Rostova",
+      time: "5 min read",
+      body: "<p>We are often told that period pain is a normal part of life. While mild cramping is expected as the uterus contracts to shed its lining, debilitating pain that interferes with your daily life is <strong>not normal</strong>.</p><p>Endometriosis occurs when tissue similar to the uterine lining grows outside the uterus, causing severe inflammation, scarring, and pain. If over-the-counter painkillers don't work, if sex is deeply painful, or if you experience severe pelvic pain even when you aren't bleeding, it's critical to demand a thorough evaluation, often requiring a laparoscopy for definitive diagnosis.</p>"
+    },
+    "art-104": {
+      title: "Nutrition for the Luteal Phase",
+      author: "Nutritionist Maya Lin",
+      time: "3 min read",
+      body: "<p>As you enter the luteal phase (the week or two before your period), progesterone peaks. This hormonal shift naturally increases your resting metabolic rate—meaning your body literally requires more calories just to function.</p><p>Instead of fighting those cravings, lean into nutrient-dense, blood-sugar stabilizing foods. Focus on complex carbohydrates like sweet potatoes and quinoa, and prioritize magnesium-rich foods like dark chocolate, spinach, and pumpkin seeds to help combat PMS symptoms and smooth out mood swings.</p>"
+    },
+    "art-105": {
+      title: "The Truth About Hormonal Birth Control",
+      author: "Prama Clinical Team",
+      time: "7 min read",
+      body: "<p>Hormonal birth control is incredibly effective at preventing pregnancy, but it's important to understand <em>how</em> it achieves this. Most combined pills work by suppressing your brain's communication with your ovaries, effectively shutting down ovulation.</p><p>This means the 'period' you get on the pill isn't a true physiological period; it's a withdrawal bleed from the sudden drop in synthetic hormones during the placebo week. When deciding to transition off birth control, expect an adjustment period of 3-6 months as your body's natural endocrine axis reboots and begins producing its own hormones again.</p>"
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const data = ARTICLES_DB[id];
+
+    if(data) {
+      document.getElementById("artTitle").innerText = data.title;
+      document.getElementById("artAuthor").innerText = "By " + data.author;
+      document.getElementById("artTime").innerHTML = `<i class="fa-regular fa-clock"></i> ` + data.time;
+      document.getElementById("artBody").innerHTML = data.body;
+
+      const savedArticles = JSON.parse(localStorage.getItem('prama_saved_articles')) || [];
+      const bookmarkBtn = document.querySelector('.bookmark-overlay-btn');
+      const icon = bookmarkBtn.querySelector('i');
+      
+      if(savedArticles.includes(id)) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+      }
+      
+      bookmarkBtn.addEventListener('click', () => {
+        const idx = savedArticles.indexOf(id);
+        if(idx === -1) {
+          savedArticles.push(id);
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+        } else {
+          savedArticles.splice(idx, 1);
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular');
+        }
+        localStorage.setItem('prama_saved_articles', JSON.stringify(savedArticles));
+      });
+    } else {
+      document.getElementById("artTitle").innerText = "Article Not Found";
+      document.getElementById("artBody").innerHTML = "<p>We couldn't find the content for this article.</p>";
+    }
+  });
+</script>
+</body>
+</html>

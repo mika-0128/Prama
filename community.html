@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Community</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="css/community.css"
+  >
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="top-bar">
+
+      <div>
+
+        <p class="welcome-text">
+         your Safe Space 
+        </p>
+
+        <h1>
+          Community
+        </h1>
+
+      </div>
+
+      <button class="notification-btn">
+
+        <i class="fa-regular fa-bell"></i>
+
+      </button>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="search-container">
+
+      <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="text"
+          placeholder="Search discussions..."
+          id="communitySearch"
+        >
+
+      </div>
+
+      <button class="filter-btn">
+
+        <i class="fa-solid fa-sliders"></i>
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- COMMUNITY INFO -->
+
+  <section class="info-section">
+
+    <div class="info-card">
+
+      <div class="info-top">
+
+        <i class="fa-solid fa-shield-heart"></i>
+
+        <span>
+          Supportive & Moderated
+        </span>
+
+      </div>
+
+      <p>
+
+        A safe community space where users can share experiences, ask questions, and support each other.
+
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- TOPICS -->
+
+  <section class="topics-section">
+
+    <div class="section-header">
+
+      <h3>
+        Topics
+      </h3>
+
+    </div>
+
+    <div class="topics-scroll">
+
+      <button class="topic-card active">
+
+        All
+
+      </button>
+
+      <button class="topic-card">
+
+        Periods
+
+      </button>
+
+      <button class="topic-card">
+
+        PCOS
+
+      </button>
+
+      <button class="topic-card">
+
+        Mental Health
+
+      </button>
+
+      <button class="topic-card">
+
+        Fitness
+
+      </button>
+
+      <button class="topic-card">
+
+        Nutrition
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <div class="community-shortcuts">
+
+  <button
+  class="topic-card quick-filter"
+  id="likedPostsBtn"
+>
+   Liked
+</button>
+
+<button
+  class="topic-card quick-filter"
+  id="savedPostsBtn"
+>
+   Saved
+</button>
+
+</div>
+
+  <!-- POSTS -->
+
+  <section class="posts-section">
+
+    <div class="section-header">
+
+      <h3>
+        Discussions
+      </h3>
+
+      <button class="refresh-btn">
+
+        Refresh
+
+      </button>
+
+    </div>
+
+    <div
+      class="posts-list"
+      id="postsList"
+    >
+
+      <!-- EMPTY -->
+
+      <div class="empty-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <h4>
+          No Community Posts Yet
+        </h4>
+
+        <p>
+
+          Community discussions and user posts will appear here after backend integration.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="quick-access-section">
+
+  <div class="section-header">
+    <h3>Quick Access</h3>
+  </div>
+
+  <div class="topics-scroll">
+
+    <button class="topic-card quick-filter active">
+      Latest
+    </button>
+
+    <button class="topic-card quick-filter">
+      Trending
+    </button>
+
+    <button class="topic-card quick-filter">
+      Saved
+    </button>
+
+    <button class="topic-card quick-filter">
+      Questions
+    </button>
+
+    <button class="topic-card quick-filter">
+      PCOS
+    </button>
+
+  </div>
+
+</section>
+
+  <!-- GUIDELINES -->
+
+  <section class="guidelines-section">
+
+    <div class="section-header">
+
+      <h3>
+        Community Guidelines
+      </h3>
+
+    </div>
+
+    <div class="guidelines-card">
+
+      <div class="guide-item">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <span>
+          Be respectful and supportive
+        </span>
+
+      </div>
+
+      <div class="guide-item">
+
+        <i class="fa-solid fa-shield"></i>
+
+        <span>
+          Avoid harmful or misleading advice
+        </span>
+
+      </div>
+
+      <div class="guide-item">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <span>
+          Respect privacy and anonymity
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="sheet-overlay" id="sheetOverlay"></div>
+
+<section class="post-sheet" id="postSheet">
+
+  <div class="sheet-handle"></div>
+
+  <div class="sheet-header">
+
+    <h3>Create Post</h3>
+
+    <button id="closePostSheet">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+  </div>
+
+  <div class="sheet-content">
+
+    <input
+      type="text"
+      id="postTitle"
+      placeholder="Title"
+      class="post-input"
+    >
+
+    <textarea
+      id="postContent"
+      placeholder="Share your experience..."
+      class="post-textarea"
+    ></textarea>
+
+    <h4>Select Tags</h4>
+
+    <div class="tag-container">
+
+      <button class="tag-chip">Question</button>
+      <button class="tag-chip">Story</button>
+      <button class="tag-chip">Sex</button>
+      <button class="tag-chip">Fitness</button>
+      <button class="tag-chip">Nutrition</button>
+      <button class="tag-chip">Mental Health</button>
+      <button class="tag-chip">Meme</button>
+      <button class="tag-chip">PCOS</button>
+      <button class="tag-chip">Periods</button>
+      <button class="tag-chip">Ovulation</button>
+
+    </div>
+
+    <div class="media-actions">
+
+      <label class="media-btn">
+
+        <i class="fa-regular fa-image"></i>
+        Image
+
+        <input type="file" hidden accept="image/*">
+
+      </label>
+
+      <label class="media-btn">
+
+        <i class="fa-solid fa-video"></i>
+        Video
+
+        <input type="file" hidden accept="video/*">
+
+      </label>
+
+    </div>
+
+    <button class="publish-btn" id="publishPost">
+      Publish Post
+    </button>
+
+  </div>
+
+</section>
+
+  <!-- FLOAT -->
+
+  <button
+     class="floating-btn"
+      id="openPostSheet"
+    >
+      <i class="fa-solid fa-plus"></i>
+  </button>
+
+
+  <!-- NAV -->
+
+  <nav class="bottom-nav">
+
+    <a href="home.html" class="nav-item">
+
+      <i class="fa-solid fa-house"></i>
+
+      <span>
+        Home
+      </span>
+
+    </a>
+
+    <a href="tracking.html" class="nav-item">
+
+      <i class="fa-solid fa-chart-line"></i>
+
+      <span>
+        Track
+      </span>
+
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+
+      <i class="fa-solid fa-user-doctor"></i>
+
+      <span>
+        Doctors
+      </span>
+
+    </a>
+
+    <a href="articles.html" class="nav-item">
+
+      <i class="fa-solid fa-book-open"></i>
+
+      <span>
+        Learn
+      </span>
+
+    </a>
+
+    <a href="community.html" class="nav-item active">
+
+      <i class="fa-solid fa-users"></i>
+
+      <span>
+        Community
+      </span>
+
+    </a>
+
+  </nav>
+
+</div>
+
+<script
+type="module"
+src="js/community.js">
+</script>
+
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('[SW] Registered:', reg.scope))
+        .catch(err => console.warn('[SW] Registration failed:', err));
+    });
+  }
+</script>
+
+<div class="sheet-overlay" id="libraryOverlay"></div>
+
+<section class="post-sheet" id="librarySheet">
+
+  <div class="sheet-header">
+
+    <h3 id="libraryTitle">
+      Saved Posts
+    </h3>
+
+    <button id="closeLibrary">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+  </div>
+
+  <div
+    class="sheet-content"
+    id="libraryContent"
+  ></div>
+
+</section>
+
+</body>
+</html>

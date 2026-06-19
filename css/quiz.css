@@ -1,0 +1,525 @@
+/* quiz.css */
+#birthday-wrapper {
+  display: none;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  background:#f5f7fa;
+
+  font-family:'Poppins',sans-serif;
+
+  padding:15px 0;
+}
+
+/* CONTAINER */
+
+.container{
+  width:390px;
+  min-height:100vh;
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+  url("background_image2.png");
+
+  background-size:cover;
+
+  background-position:center;
+
+  background-repeat:no-repeat;
+}
+
+/* REMOVE OLD OVERLAY */
+
+.background-overlay{
+  display:none;
+}
+
+/* TOP SECTION */
+
+.top-section{
+  padding-top:25px;
+
+  text-align:center;
+
+  position:relative;
+  z-index:10;
+}
+
+/* LOGO */
+
+.logo-text{
+  text-align:center;
+}
+
+/* LOGO TEXT */
+
+.logo-text h1{
+  font-family:
+  'Cormorant Garamond',
+  serif;
+
+  font-size:62px;
+
+  color:white;
+
+  font-weight:600;
+
+  position:relative;
+
+  display:inline-block;
+
+  letter-spacing:1px;
+}
+
+/* LEAF */
+
+.leaf-a{
+  position:relative;
+}
+
+/* LEAFS */
+
+.leaf-a::before,
+.leaf-a::after{
+  content:'';
+
+  position:absolute;
+
+  width:12px;
+  height:22px;
+
+  background:white;
+
+  border-radius:
+  100% 0 100% 0;
+}
+
+/* TOP LEAF */
+
+.leaf-a::before{
+  top:-12px;
+  right:-10px;
+
+  transform:rotate(-30deg);
+}
+
+/* SIDE LEAF */
+
+.leaf-a::after{
+  top:-1px;
+  right:-22px;
+
+  transform:rotate(35deg);
+}
+
+/* SUBTITLE */
+
+.subtitle{
+  margin-top:4px;
+
+  color:white;
+
+  font-size:11px;
+  letter-spacing:3px;
+
+  opacity:.9;
+}
+
+/* PROGRESS */
+
+.progress-wrapper{
+  margin-top:22px;
+}
+
+.progress-wrapper p{
+  color:white;
+
+  margin-bottom:14px;
+
+  font-size:14px;
+}
+
+/* BAR */
+
+.progress-bar{
+  width:220px;
+  height:10px;
+
+  margin:auto;
+
+  background:
+  rgba(255,255,255,.25);
+
+  border-radius:50px;
+
+  overflow:hidden;
+
+  backdrop-filter:blur(10px);
+}
+
+.progress-fill{
+  width:16%;
+
+  height:100%;
+
+  background:
+  linear-gradient(
+    to right,
+    #ffd6df,
+    #ffffff
+  );
+
+  border-radius:50px;
+}
+
+.progress-fill {
+  transition: width 0.4s ease;
+}
+/* QUIZ CARD */
+
+/* QUIZ CARD */
+
+.quiz-card{
+  width:340px;
+
+  margin:
+  25px auto 30px auto;
+
+  padding:
+  28px 22px;
+
+  background:
+  rgba(255,255,255,.45);
+
+  backdrop-filter:blur(22px);
+
+  -webkit-backdrop-filter:blur(22px);
+
+  border:
+  1px solid rgba(255,255,255,.35);
+
+  border-radius:35px;
+
+  box-shadow:
+  0 20px 40px rgba(183,91,104,.10);
+
+  position:relative;
+  z-index:10;
+}
+
+/* QUESTION AREA */
+
+.question-area{
+  text-align:center;
+}
+
+/* QUOTE */
+
+.quote{
+  font-size:55px;
+
+  color:#ef8ea0;
+
+  line-height:1;
+}
+
+/* QUESTION */
+
+.question-area h1{
+  font-family:
+  'Cormorant Garamond',
+  serif;
+
+  font-size:42px;
+
+  line-height:1.1;
+
+  color:#1d4f80;
+
+  margin-top:-10px;
+}
+
+/* DIVIDER */
+
+.divider{
+  width:140px;
+  height:2px;
+
+  margin:
+  22px auto 28px auto;
+
+  background:
+  linear-gradient(
+    to right,
+    transparent,
+    #ef8ea0,
+    transparent
+  );
+}
+
+/* BIRTHDAY */
+
+.birthday-wrapper{
+  margin-bottom:25px;
+}
+
+#birthday-input{
+  width:100%;
+  height:62px;
+
+  border-radius:20px;
+
+  border:
+  1.5px solid rgba(239,142,160,.35);
+
+  padding:0 18px;
+
+  font-size:15px;
+
+  background:
+  rgba(255,255,255,.75);
+
+  color:#1d4f80;
+
+  outline:none;
+
+  box-shadow:
+  0 10px 20px rgba(0,0,0,.03);
+}
+
+/* OPTIONS */
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* OPTION */
+
+.option{
+  min-height:68px;
+
+  border-radius:20px;
+
+  border:
+  1.5px solid rgba(239,142,160,.22);
+
+  background:
+  rgba(255,255,255,.55);
+
+  backdrop-filter:blur(12px);
+
+  display:flex;
+  align-items:center;
+
+  padding:0 18px;
+
+  gap:14px;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,.03);
+}
+
+/* HOVER */
+
+.option:hover{
+  transform:translateY(-2px);
+}
+
+/* SELECTED */
+
+.option.selected{
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,220,228,.85),
+    rgba(235,242,255,.8)
+  );
+
+  border:
+  2px solid #ef8ea0;
+
+  box-shadow:
+  0 12px 25px rgba(239,142,160,.15);
+}
+
+/* ICON */
+
+.option-icon{
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+
+  background:
+  rgba(239,142,160,.15);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:#ef8ea0;
+
+  font-size:17px;
+}
+
+/* TEXT */
+
+.option span{
+  flex:1;
+
+  text-align:left;
+
+  font-size:15px;
+  font-weight:500;
+
+  color:#1d4f80;
+}
+
+
+
+.option-icon i,
+.check i {
+  font-size: 16px;
+  line-height: 1;
+}
+/* CHECK */
+
+.check{
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  background:#ef8ea0;
+
+  color:white;
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  font-size:14px;
+}
+
+.option.selected .check{
+  display:flex;
+}
+
+/* BUTTON */
+
+.next-btn{
+  width:100%;
+  height:62px;
+
+  margin-top:30px;
+
+  border-radius:50px;
+
+  border:
+  2px solid rgba(239,142,160,.7);
+
+  background:
+  rgba(255,255,255,.45);
+
+  backdrop-filter:blur(14px);
+
+  color:#d86d84;
+
+  font-family:
+  'Cormorant Garamond',
+  serif;
+
+  font-size:24px;
+  font-weight:600;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  box-shadow:
+  0 15px 25px rgba(239,142,160,.08);
+}
+
+/* BUTTON HOVER */
+
+.next-btn:hover{
+  transform:translateY(-3px);
+}
+
+/* ARROW */
+
+.arrow-circle{
+  position:absolute;
+
+  right:12px;
+
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  background:
+  rgba(239,142,160,.18);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:#376996;
+
+  font-size:18px;
+}
+
+/* SKIP */
+
+.skip-btn{
+  width:100%;
+
+  margin-top:20px;
+
+  border:none;
+  background:none;
+
+  color:#1d4f80;
+
+  font-size:15px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.skip-btn:hover{
+  opacity:.7;
+}

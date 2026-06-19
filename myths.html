@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myth Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/articles.css">
+</head>
+<body>
+
+<div class="app-container">
+  <!-- COMPACT PINK HEAD PATTERN -->
+  <header class="subpage-pink-header">
+    <div class="hero-overlay"></div>
+    <div class="subpage-nav-row">
+      <a href="articles.html" class="subpage-back-btn"><i class="fa-solid fa-chevron-left"></i> Learn Hub</a>
+      <span class="subpage-badge" style="background: rgba(255,255,255,0.22); color:white;">Misconceptions</span>
+    </div>
+    <h2 class="subpage-title">The Myth vs. Fact Registry</h2>
+    <p style="font-size: 12px; color: rgba(255,255,255,0.85); position: relative; z-index: 2; margin-top: 2px;">Dismantling common generational cycle rumors with medical logic.</p>
+  </header>
+
+  <main style="padding: 24px 22px;">
+    <div id="fullMythsListContainer">
+      <!-- Complete registry builds out here seamlessly -->
+    </div>
+  </main>
+</div>
+
+<script>
+  const MYTHS_DATABASE = [
+    { myth: "Severe, crippling period pain is normal and something you just have to deal with.", fact: "Mild cramping is normal. Debilitating pain that stops you from working or going to school is a sign of underlying inflammation or conditions like endometriosis." },
+    { myth: "It is biologically impossible to get pregnant while on your period.", fact: "Sperm can live inside fertile channels for up to 5 days. If someone has a short cycle and ovulates early, conception can occur during active bleeding." },
+    { myth: "Exercising during your period is dangerous and damages your internal organs.", fact: "Light movement and low-impact workouts actually lower your prostaglandin markers, releasing endorphins that naturally alleviate cramps." }
+  ];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const listContainer = document.getElementById("fullMythsListContainer");
+    if(listContainer) {
+      listContainer.innerHTML = MYTHS_DATABASE.map((item, idx) => `
+        <div style="background: white; padding: 20px; border-radius: 24px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); border: 1px solid rgba(239,142,160,0.12)">
+          <div style="font-size: 11px; font-weight: 700; color: #d32f2f; margin-bottom: 4px;"><i class="fa-solid fa-circle-xmark"></i> MYTH ${idx + 1}</div>
+          <p style="font-size: 14px; color: #555; font-style: italic; margin-bottom: 14px; line-height:1.4;">"${item.myth}"</p>
+          <div style="font-size: 11px; font-weight: 700; color: #2e7d32; margin-bottom: 4px; border-top: 1px dashed #ffe5e9; padding-top: 12px;"><i class="fa-solid fa-circle-check"></i> CLINICAL FACT</div>
+          <p style="font-size: 14px; color: #1d4f80; line-height: 1.5; font-weight:400;">${item.fact}</p>
+        </div>
+      `).join('');
+    }
+  });
+</script>
+</body>
+</html>

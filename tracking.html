@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+
+  <title>Prama Tracking</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/tracking.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="top-bar">
+
+      <div>
+        <p class="welcome-text">Wellness Tracking</p>
+        <h1>Your Cycle</h1>
+      </div>
+
+      <button class="notification-btn">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+
+    </div>
+
+    <div class="cycle-card">
+
+      <div class="cycle-left">
+        <p class="cycle-label">Prediction</p>
+        <h2 id="cycleStatus">No Data Yet</h2>
+        <span id="cycleSubtext">Mark period dates to calculate your cycle</span>
+      </div>
+
+      <div class="cycle-progress" style="--progress:0deg;">
+        <div class="progress-inner">
+          <span id="daysLeft">--</span>
+          <small>Days</small>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CALENDAR -->
+
+  <section class="calendar-section">
+
+    <div class="section-header">
+
+      <h3>Cycle Calendar</h3>
+
+      <div class="month-controls">
+
+        <button id="prevMonth">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button class="month-btn" id="currentMonth">
+          Loading...
+        </button>
+
+        <button id="nextMonth">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="calendar-card">
+
+      <div class="calendar-actions">
+
+        <button class="edit-period-btn" id="editPeriodsBtn">
+          <i class="fa-solid fa-pen"></i>
+          Edit Periods
+        </button>
+
+        <p id="editModeText"> 
+         Tap Edit Period then select a start date
+        </p>
+
+      </div>
+
+      <div class="weekdays">
+        <span>M</span>
+        <span>T</span>
+        <span>W</span>
+        <span>T</span>
+        <span>F</span>
+        <span>S</span>
+        <span>S</span>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+
+      <div class="calendar-legend">
+
+        <div class="legend-item">
+          <span class="outline-dot red"></span>
+          Period
+        </div>
+
+        <div class="legend-item">
+          <span class="outline-dot blue"></span>
+          Ovulation
+        </div>
+
+        <div class="legend-item">
+          <span class="dot light-blue"></span>
+          Fertile
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SELECTED DATE LOG -->
+
+  <section class="daily-actions-section">
+
+  <div class="section-header">
+    <h3>Cycle Actions</h3>
+  </div>
+
+  <div class="action-buttons">
+
+    <button class="action-btn" id="editPeriodActionBtn">
+      <i class="fa-solid fa-calendar-days"></i>
+      Edit Period
+    </button>
+
+    <button class="action-btn" id="addNotesBtn">
+      <i class="fa-solid fa-note-sticky"></i>
+      Add Notes
+    </button>
+
+  </div>
+
+</section>
+
+<!-- SELECTED DATE LOG -->
+
+<section class="daily-log-section">
+
+  <div class="section-header">
+
+    <div>
+      <h3 id="selectedDateTitle">
+        Selected Date
+      </h3>
+
+      <p id="selectedDateSubtitle">
+        No daily log added yet
+      </p>
+    </div>
+
+  </div>
+
+  <div class="log-card">
+
+    <div id="selectedDateLogs">
+
+      <div class="empty-log">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        <p>
+          Select a date to view daily information.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- CYCLE PREDICTION -->
+
+  <section class="overview-section">
+
+    <div class="section-header">
+      <h3>Cycle Prediction</h3>
+    </div>
+
+    <div class="overview-card">
+
+      <div class="overview-item">
+        <span>Average Cycle</span>
+        <strong id="cycleLength">--</strong>
+      </div>
+
+      <div class="overview-item">
+        <span>Next Period</span>
+        <strong id="nextPeriod">No Data</strong>
+      </div>
+
+      <div class="overview-item">
+        <span>Ovulation Estimate</span>
+        <strong id="ovulationDate">No Data</strong>
+      </div>
+
+      <div class="overview-item">
+        <span>Fertile Window</span>
+        <strong id="fertileWindow">No Data</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- INSIGHTS -->
+
+  <section class="insights-section">
+
+    <div class="section-header">
+      <h3>Insights</h3>
+    </div>
+
+    <div class="insight-card">
+
+      <i class="fa-solid fa-chart-line"></i>
+
+      <p id="insightText">
+        Mark period dates to calculate your next period, ovulation estimate, and fertile window.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SUMMARY -->
+
+  <button class="summary-btn" id="summaryBtn">
+    Get Summary Report
+  </button>
+
+  <p class="pdf-note">
+    PDF reports will be available after enough tracking data is collected.
+  </p>
+
+  <!-- DAILY LOG BOTTOM SHEET -->
+
+  <div class="sheet-overlay" id="sheetOverlay"></div>
+
+  <section class="daily-sheet" id="dailySheet">
+
+    <div class="sheet-handle"></div>
+
+    <div class="sheet-header">
+
+      <div>
+        <h3>Edit Daily Log</h3>
+        <p id="sheetDateText">Selected date</p>
+      </div>
+
+      <button id="closeSheetBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div class="sheet-content">
+
+      <div class="tracking-category">
+
+        <h4>Flow</h4>
+
+        <div class="chip-group single" data-field="flow">
+          <button class="chip" data-value="None">None</button>
+          <button class="chip" data-value="Light">Light</button>
+          <button class="chip" data-value="Medium">Medium</button>
+          <button class="chip" data-value="Heavy">Heavy</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Sex</h4>
+
+        <div class="chip-group single" data-field="sex">
+          <button class="chip" data-value="No">No</button>
+          <button class="chip" data-value="Yes">Yes</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Mood</h4>
+
+        <div class="chip-group single" data-field="mood">
+          <button class="chip" data-value="Happy">Happy</button>
+          <button class="chip" data-value="Calm">Calm</button>
+          <button class="chip" data-value="Sad">Sad</button>
+          <button class="chip" data-value="Anxious">Anxious</button>
+          <button class="chip" data-value="Irritated">Irritated</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Symptoms</h4>
+
+        <div class="chip-group multi" data-field="symptoms">
+          <button class="chip" data-value="Cramps">Cramps</button>
+          <button class="chip" data-value="Bloating">Bloating</button>
+          <button class="chip" data-value="Acne">Acne</button>
+          <button class="chip" data-value="Fatigue">Fatigue</button>
+          <button class="chip" data-value="Headache">Headache</button>
+          <button class="chip" data-value="Back Pain">Back Pain</button>
+          <button class="chip" data-value="Breast Pain">Breast Pain</button>
+          <button class="chip" data-value="Food Cravings">Food Cravings</button>
+          <button class="chip" data-value="Nausea">Nausea</button>
+          <button class="chip" data-value="Mood Swings">Mood Swings</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Discharge</h4>
+
+        <div class="chip-group single" data-field="discharge">
+          <button class="chip" data-value="None">None</button>
+          <button class="chip" data-value="Clear">Clear</button>
+          <button class="chip" data-value="White">White</button>
+          <button class="chip" data-value="Sticky">Sticky</button>
+          <button class="chip" data-value="Spotting">Spotting</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Pregnancy</h4>
+
+        <div class="chip-group single" data-field="pregnancy">
+          <button class="chip" data-value="No">No</button>
+          <button class="chip" data-value="Negative">Negative</button>
+          <button class="chip" data-value="Positive">Positive</button>
+          <button class="chip" data-value="Unsure">Unsure</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Physical Activity</h4>
+
+        <div class="chip-group multi" data-field="activity">
+          <button class="chip" data-value="Walking">Walking</button>
+          <button class="chip" data-value="Yoga">Yoga</button>
+          <button class="chip" data-value="Workout">Workout</button>
+          <button class="chip" data-value="Running">Running</button>
+          <button class="chip" data-value="Stretching">Stretching</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Pills</h4>
+
+        <div class="chip-group single" data-field="pills">
+          <button class="chip" data-value="No">No</button>
+          <button class="chip" data-value="Taken">Taken</button>
+          <button class="chip" data-value="Missed">Missed</button>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Weight</h4>
+
+        <div class="input-row">
+          <input type="number" id="weightInput" placeholder="Enter weight">
+          <span>kg</span>
+        </div>
+
+      </div>
+
+      <div class="tracking-category">
+
+        <h4>Note</h4>
+
+        <textarea id="noteInput" placeholder="Add anything you want to remember about this day..."></textarea>
+
+      </div>
+
+      <button class="save-btn" id="saveDailyLogBtn">
+        Save Daily Log
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- NAV -->
+
+  <nav class="bottom-nav">
+
+    <a href="home.html" class="nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="tracking.html" class="nav-item active">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Track</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+      <i class="fa-solid fa-user-doctor"></i>
+      <span>Doctors</span>
+    </a>
+
+    <a href="articles.html" class="nav-item">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Learn</span>
+    </a>
+
+    <a href="community.html" class="nav-item">
+      <i class="fa-solid fa-users"></i>
+      <span>Community</span>
+    </a>
+
+  </nav>
+
+</div>
+
+<script type="module" src="js/tracking.js"></script>
+
+</body>
+</html>

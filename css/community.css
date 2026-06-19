@@ -1,0 +1,606 @@
+/* ==========================================================================
+   0. CONFIGURATION & VARIABLES
+   ========================================================================== */
+:root {
+  --primary-color: #ef8ea0;
+  --primary-gradient: linear-gradient(135deg, #ee8ea2, #f6b7c4);
+  --btn-gradient: linear-gradient(135deg, #ef8ea0, #de7289);
+  --bg-main: #fff5f7;
+  --bg-gradient: linear-gradient(180deg, #fff7f8, #fffafb);
+  --text-dark: #1d4f80;
+  --text-muted: #777;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   1. RESET & BASE LAYOUT
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 120px;
+}
+
+/* ==========================================================================
+   2. HERO & SEARCH
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  padding: 42px 22px 34px;
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+  overflow: hidden;
+  background: var(--primary-gradient);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("leafs_background.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+}
+
+.top-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.welcome-text {
+  color: white;
+  font-size: 13px;
+}
+
+.top-bar h1 {
+  color: white;
+  font-size: 42px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.notification-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .22);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.search-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.search-box {
+  flex: 1;
+  height: 56px;
+  background: white;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 12px;
+}
+
+.search-box i {
+  color: var(--primary-color);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: none;
+  font-family: inherit;
+}
+
+.filter-btn {
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 18px;
+  background: white;
+  color: var(--primary-color);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   3. REUSABLE SECTION WRAPPERS & CARDS
+   ========================================================================== */
+.info-section,
+.topics-section,
+.create-section,
+.posts-section,
+.guidelines-section,
+.quick-access-section {
+  padding: 0 22px;
+  margin-top: 28px;
+}
+
+.quick-access-section {
+  margin-top: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.section-header h3 {
+  color: var(--text-dark);
+  font-size: 22px;
+}
+
+/* Card Bases */
+.info-card,
+.empty-card,
+.guidelines-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 30px;
+}
+
+/* ==========================================================================
+   4. MODULE SPECIFICS (INFO, GUIDELINES, SHORTCUTS)
+   ========================================================================== */
+.info-card {
+  padding: 26px;
+}
+
+.info-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.info-top i {
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+.info-top span {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.info-card p,
+.empty-card p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* Topics Scroller */
+.topics-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.quick-access-section .topics-scroll {
+  margin-top: 10px;
+}
+
+.topics-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.topic-card {
+  border: none;
+  background: var(--card-bg);
+  padding: 12px 20px;
+  border-radius: 18px;
+  color: var(--text-dark);
+  white-space: nowrap;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.topic-card.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.community-shortcuts {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 0 22px;
+}
+
+.community-shortcuts button {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  border-radius: 16px;
+  background: white;
+  color: var(--text-dark);
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.02);
+}
+
+/* Guidelines Layout */
+.guidelines-card {
+  padding: 24px;
+}
+
+.guide-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .04);
+}
+
+.guide-item:last-child {
+  border: none;
+}
+
+.guide-item i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+.guide-item span {
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+.refresh-btn {
+  border: none;
+  background: rgba(239, 142, 160, .15);
+  color: var(--primary-color);
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   5. FEED COMPONENT (POST CARDS)
+   ========================================================================== */
+.posts-section {
+  margin-bottom: 35px;
+}
+
+.empty-card {
+  padding: 40px 28px;
+  text-align: center;
+}
+
+.empty-card i {
+  font-size: 42px;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+}
+
+.empty-card h4 {
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.post-card {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+}
+
+.post-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-user {
+  display: flex;
+  gap: 12px;
+}
+
+.post-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-title {
+  color: var(--text-dark);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.post-tag {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--bg-main);
+  color: var(--primary-color);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.post-actions button {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Post Action States */
+.like-btn.liked { color: #ef4f7a; }
+.like-btn.liked i { font-weight: 900; }
+.bookmark-btn.bookmarked { color: #376996; }
+.bookmark-btn.bookmarked i { font-weight: 900; }
+
+/* ==========================================================================
+   6. BOTTOM OVERLAYS & SHEETS
+   ========================================================================== */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-smooth);
+  z-index: 998;
+}
+
+.sheet-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.post-sheet {
+  position: fixed;
+  left: 50%;
+  bottom: -100%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  height: 78vh;
+  background: white;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  transition: bottom 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 999;
+}
+
+.post-sheet.active {
+  bottom: 0;
+}
+
+.sheet-handle {
+  width: 60px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ddd;
+  margin: 12px auto;
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 22px 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.sheet-header h3 {
+  color: var(--text-dark);
+}
+
+.sheet-header button {
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.sheet-content {
+  padding: 22px;
+  overflow-y: auto;
+  height: calc(100% - 60px);
+}
+
+/* Sheets Forms Elements */
+.post-input,
+.post-textarea {
+  width: 100%;
+  border: none;
+  background: var(--bg-main);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.post-textarea {
+  min-height: 140px;
+  resize: none;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 22px;
+}
+
+.tag-chip {
+  border: none;
+  background: white;
+  color: var(--primary-color);
+  border-radius: 999px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .05);
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tag-chip.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.media-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.media-btn {
+  flex: 1;
+  background: var(--bg-main);
+  border-radius: 18px;
+  padding: 14px;
+  text-align: center;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.publish-btn {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 18px;
+  margin-top: 24px;
+  background: var(--btn-gradient);
+  color: white;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.saved-post {
+  background: #fff8fa;
+  padding: 16px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+}
+
+.saved-post h4 {
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.saved-post p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   7. NAVIGATION & FIXED COMPONENTS
+   ========================================================================== */
+.floating-btn {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  left: 50%;
+  margin-left: 115px;
+  bottom: 95px;
+  border: none;
+  border-radius: 50%;
+  background: var(--btn-gradient);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  z-index: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(239, 142, 160, 0.4);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 390px;
+  height: 82px;
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 800;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
+}
+
+.nav-item {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #8d8d8d;
+  font-size: 11px;
+}
+
+.nav-item i {
+  font-size: 18px;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}

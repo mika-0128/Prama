@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/articles.css">
+</head>
+<body>
+
+<div class="app-container" style="background: #fffafb;">
+  <!-- COMPACT PINK HEAD PATTERN -->
+  <header class="subpage-pink-header">
+    <div class="hero-overlay"></div>
+    <div class="subpage-nav-row">
+      <a href="articles.html" class="subpage-back-btn"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
+      <span class="subpage-badge" id="topicTag">Guide</span>
+    </div>
+    <h2 id="topicTitle" class="subpage-title">Loading Guide...</h2>
+  </header>
+
+  <main style="padding: 24px 22px;">
+    <div id="topicBody"></div>
+  </main>
+</div>
+
+<script>
+  const DETAILS_DB = {
+    "blood-colors": {
+      title: "The Menstrual Blood Color Guide",
+      tag: "Biological Fluid Guide",
+      html: `
+        <div class="rich-content">
+          <p>The color of your period fluid changes based on one primary rule: <b>how quickly the blood leaves your body</b> and interacts with oxygen.</p>
+          <div class="color-indicator-row pink-indicator"><strong>Pink / Rose:</strong> Mixed with moist, protective cervical fluids. Often seen on light flow days or at the absolute beginning.</div>
+          <div class="color-indicator-row red-indicator"><strong>Bright Red:</strong> Active, fast-moving flow. The body is shedding the lining rapidly.</div>
+          <div class="color-indicator-row brown-indicator"><strong>Dark Brown / Black:</strong> Older blood that took longer to transit out and oxidized safely inside the uterus.</div>
+        </div>`
+    },
+    "discharges": {
+      title: "Cervical Discharge Profiles",
+      tag: "Fluid Cycle Guide",
+      html: `
+        <div class="rich-content">
+          <p>Cervical fluid changes textures completely during your cycle to follow your changing estrogen hormone shifts.</p>
+          <ul>
+            <li><b>Dry / Sticky:</b> Normal right after your period ends when estrogen drops low.</li>
+            <li><b>Creamy like Lotion:</b> Signals your body is building up to its cycle midway window.</li>
+            <li><b>Stretchy like Raw Egg-Whites:</b> Peak fertility. Perfectly designed by nature to protect sperm.</li>
+          </ul>
+        </div>`
+    },
+    "clots": {
+      title: "Coagulation & Blood Clots",
+      tag: "Flow System Guide",
+      html: `
+        <div class="rich-content">
+          <p>When flow is heavy, your body releases natural anti-clumping enzymes. On high-volume days, the blood sheds too quickly for these enzymes to keep up, leading to a perfectly normal coagulation breakdown.</p>
+          <div class="clinical-callout">
+            <h4>The Quarter Rule</h4>
+            <p>Dime or quarter-sized gel clumps are standard. If you regularly pass clumps larger than a golf ball, log it to show your provider.</p>
+          </div>
+        </div>`
+    },
+    "pain-map": {
+      title: "Understanding Cycle Pain Zones",
+      tag: "Symptom Anatomy Guide",
+      html: `
+        <div class="rich-content">
+          <p>Period discomfort radiates across distinct nerve tracks:</p>
+          <p><b>1. Lower Abdomen:</b> Directly driven by prostaglandins contracting the uterine muscle layers.</p>
+          <p><b>2. Lower Back & Thighs:</b> Referred pain branching down your spinal nerve channels.</p>
+        </div>`
+    },
+    "products": {
+      title: "The Period Product Matrix",
+      tag: "Apparel & Care Matrix",
+      html: `
+        <div class="rich-content">
+          <p>A simple breakdown of products to manage your cycle based on daily requirements:</p>
+          <table class="product-table-display">
+            <thead><tr><th>Product</th><th>Type</th><th>Wear Limit</th></tr></thead>
+            <tbody>
+              <tr><td><b>Pads</b></td><td>External wear</td><td>Change every 3-4 hrs</td></tr>
+              <tr><td><b>Menstrual Cups</b></td><td>Internal collection</td><td>Safe up to 12 hrs</td></tr>
+            </tbody>
+          </table>
+        </div>`
+    },
+    "illnesses": {
+      title: "Cyclic Health Disorders",
+      tag: "Clinical Conditions Overview",
+      html: `
+        <div class="rich-content">
+          <p>• <b>PCOS:</b> A hormone variance that pauses ovulation triggers, causing cycle delays.</p>
+          <p>• <b>Endometriosis:</b> Cells matching the inner lining tracking and growing outside the womb structure, creating localized inflammation.</p>
+        </div>`
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const topicKey = params.get("topic");
+    const data = DETAILS_DB[topicKey];
+
+    if(data) {
+      document.getElementById("topicTitle").innerText = data.title;
+      document.getElementById("topicTag").innerText = data.tag;
+      document.getElementById("topicBody").innerHTML = data.html;
+    } else {
+      document.getElementById("topicTitle").innerText = "Guide Not Found";
+    }
+  });
+</script>
+</body>
+</html>

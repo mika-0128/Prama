@@ -1,0 +1,43 @@
+{
+  "name": "Prama – PCOS Wellness Companion",
+  "short_name": "Prama",
+  "description": "Your personalized PCOS wellness companion. Track symptoms, understand your body, and build healthier habits.",
+  "start_url": "./welcome.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d1a",
+  "theme_color": "#c084fc",
+  "categories": ["health", "lifestyle", "medical"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Track Today",
+      "short_name": "Track",
+      "description": "Log today's symptoms and cycle data",
+      "url": "./tracking.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Home Dashboard",
+      "short_name": "Home",
+      "description": "Go to the main dashboard",
+      "url": "./home.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

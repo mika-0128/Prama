@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>Prama sign up</title>
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/signup.css">
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- BACKGROUND IMAGE -->
+    <div class="background-overlay"></div>
+    <!-- HERO -->
+    <div class="hero-content">
+      <div class="logo">
+        <h1>Pram<span class="leaf-a">a</span></h1>
+        <p>YOUR PCOS WELLNESS COMPANION</p>
+        <div class="line-divider">
+          <span></span>
+          ✦
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- LOGIN CARD -->
+    <div class="login-card">
+      <h2>Create Account</h2>
+      <p class="subtitle">Start your wellness journey</p>
+      <div class="input-group">
+      <label>Full Name</label>
+     <div class="input-box">
+        <i class="fa-regular fa-user"></i>
+        <input id="fullName" type="text" placeholder="Enter your name">
+     </div>
+    </div>
+      <!-- EMAIL -->
+      <div class="input-group">
+        <label>Email Address</label>
+        <div class="input-box">
+          <i class="fa-regular fa-envelope"></i>
+          <input id="email" type="email" placeholder="hello@prama.com" autocomplete="off">
+        </div>
+      </div>
+      <!-- PASSWORD -->
+      <div class="input-group">
+        <label>Password</label>
+        <div class="input-box">
+          <i class="fa-solid fa-lock"></i>
+          <input id="password" type="password" placeholder="Enter your password" autocomplete="new-password">
+          <button class="eye-btn" id="togglePassword" type="button">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <!-- CONFIRM PASSWORD -->
+
+<div class="input-group">
+
+  <label>Confirm Password</label>
+
+  <div class="input-box">
+
+    <i class="fa-solid fa-lock"></i>
+
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Re-enter your password"
+      autocomplete="new-password"
+    >
+
+    <button
+      class="eye-btn"
+      id="toggleConfirmPassword"
+      type="button"
+    >
+      <i class="fa-regular fa-eye"></i>
+    </button>
+
+  </div>
+
+</div>
+      <!-- OPTIONS -->
+      <div class="options">
+        <label class="remember">
+          <input type="checkbox">
+          Remember me
+        </label>
+        
+      </div>
+      <!-- BUTTON -->
+      <button class="signin-btn" id="signupBtn" type="button">
+           <span>Sign Up</span>
+        <div class="arrow-circle">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </button>
+    <!-- FOOTER -->
+    <p class="auth-link">
+  Already have an account?
+  <a href="login.html">Log In</a>
+</p>
+  <!-- LOGIN JS -->
+  <script type="module" src="js/signup.js"></script>
+  <!-- PWA SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('[SW] Registered:', reg.scope))
+        .catch(err => console.warn('[SW] Registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>

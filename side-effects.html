@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Side Effects</title>
+
+  <link rel="stylesheet" href="css/side-effects.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <div class="top-bar">
+      <a href="home.html" class="circle-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
+
+      <div>
+        <p>PCOS / PMOS Guide</p>
+        <h1>Side Effects</h1>
+      </div>
+
+      <button class="circle-btn">
+        <i class="fa-solid fa-circle-info"></i>
+      </button>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search side effects..."
+      />
+    </div>
+  </section>
+
+  <section class="controls-section">
+
+    <div class="sort-row">
+      <label>Sort by</label>
+
+      <select id="sortSelect">
+        <option value="az">A - Z</option>
+        <option value="category">Category</option>
+      </select>
+    </div>
+
+    <div class="category-row">
+      <button class="chip active" data-category="All">All</button>
+      <button class="chip" data-category="Cycle">Cycle</button>
+      <button class="chip" data-category="Skin">Skin</button>
+      <button class="chip" data-category="Hair">Hair</button>
+      <button class="chip" data-category="Mood">Mood</button>
+      <button class="chip" data-category="Metabolic">Metabolic</button>
+    </div>
+
+  </section>
+
+  <section class="list-section">
+
+    <div class="section-header">
+      <h3>Common Side Effects</h3>
+      <p id="resultCount">0 results</p>
+    </div>
+
+    <div class="effects-list" id="effectsList"></div>
+
+  </section>
+
+  <nav class="bottom-nav">
+
+    <a href="home.html" class="nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="tracking.html" class="nav-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Track</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+      <i class="fa-solid fa-user-doctor"></i>
+      <span>Doctors</span>
+    </a>
+
+    <a href="articles.html" class="nav-item active">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Learn</span>
+    </a>
+
+    <a href="community.html" class="nav-item">
+      <i class="fa-solid fa-users"></i>
+      <span>Community</span>
+    </a>
+
+  </nav>
+
+</div>
+
+<script src="js/side-effects.js"></script>
+
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('[SW] Registered:', reg.scope))
+        .catch(err => console.warn('[SW] Registration failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>

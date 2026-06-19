@@ -1,0 +1,760 @@
+/* ==========================================================================
+   0. CORE VARIABLES & LAYOUT RESET
+   ========================================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  background:#fff5f7;
+  font-family:'Poppins',sans-serif;
+}
+
+.app-container{
+  width:100%;
+  max-width:390px;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+  background: linear-gradient(180deg, rgba(255,245,247,.45), rgba(255,245,247,.9)), url("background_image3.png");
+  background-size: cover, cover;
+  background-position: center, top center;
+  background-repeat: no-repeat, no-repeat;
+  padding-bottom: 40px; /* Trimmed down cleanly since bottom navigation dock is missing */
+}
+
+/* ==========================================================================
+   1. HERO OVERLAY
+   ========================================================================== */
+.hero-section{
+  position:relative;
+  padding:34px 22px 36px;
+  border-bottom-left-radius:42px;
+  border-bottom-right-radius:42px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ee8ea2,#f6b7c4);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background-image:url("image/leafs_background.png");
+  background-size:cover;
+  background-position:center top;
+  opacity:.35;
+}
+
+.top-bar{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.back-btn,
+.info-btn{
+  width:46px;
+  height:46px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.25);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:18px;
+  backdrop-filter:blur(12px);
+  transition: background 0.2s ease;
+}
+
+.back-btn:active, .info-btn:active {
+  background: rgba(255,255,255, 0.45);
+}
+
+.title-box{
+  text-align:center;
+}
+
+.title-box p{
+  color:white;
+  font-size:13px;
+}
+
+.title-box h1{
+  color:white;
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;
+  line-height:1;
+}
+
+/* ==========================================================================
+   2. ANATOMICAL SILHOUETTE VIEWER
+   ========================================================================== */
+.bodymap-section{
+  padding:24px 22px 0;
+}
+
+.instruction{
+  color:#70445a;
+  font-size:13px;
+  line-height:1.6;
+  text-align:center;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:14px 18px;
+  margin-bottom:18px;
+  box-shadow: 0 10px 25px rgba(224,122,138,.08);
+}
+
+.body-card {
+  position: relative;
+  height: 640px; /* Increased from 510px to expand the layout vertical footprint */
+  border-radius: 36px;
+  background: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, .45);
+  box-shadow: 0 18px 36px rgba(224, 122, 138, .12);
+  overflow: hidden;
+}
+
+/* Background ambient pink glow ring */
+.body-card::before {
+  content: "";
+  position: absolute;
+  width: 320px; /* Increased from 260px to scale nicely behind the larger torso */
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(239, 142, 160, .1);
+  top: 180px; /* Shifted down to match the new center of the larger image */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.body-wrapper{
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.body-image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 96%; /* Increased from 100% with containment to force maximum scale width within bounds */
+  width: auto;
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* PREMIUM DUAL-RING ANIMATED MAP POINTS */
+.map-point{
+  position:absolute;
+  width:16px;
+  height:16px;
+  border:2.5px solid white;
+  border-radius:50%;
+  background:#ef4f7a;
+  z-index:5;
+  cursor:pointer;
+  transform: translateX(-50%) translateY(-50%);
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.map-point::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: rgba(239, 79, 122, 0.2);
+  animation: premiumPulse 2s cubic-bezier(0.25, 0, 0, 1) infinite;
+  z-index: -1;
+}
+
+.map-point::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 79, 122, 0.3);
+  animation: premiumPulseOuter 2s cubic-bezier(0.25, 0, 0, 1) infinite;
+  z-index: -1;
+}
+
+.map-point:hover, .map-point.active{
+  transform: translateX(-50%) translateY(-50%) scale(1.35);
+  background:#1d4f80;
+}
+
+.map-point.active::before {
+  background: rgba(29, 79, 128, 0.25);
+  animation-duration: 1.5s;
+}
+
+.map-point.active::after {
+  border-color: rgba(29, 79, 128, 0.3);
+  animation-duration: 1.5s;
+}
+
+@keyframes premiumPulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes premiumPulseOuter {
+  0% { transform: scale(0.7); opacity: 0; }
+  40% { opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* HIGHLY SYSTEMATIZED BIOLOGICAL PLACEMENT PERCENTAGES */
+/* PRECISION POSITION MATRIX FOR bodymap-women.png */
+.brain { 
+  top: 18%; 
+  left: 49%; 
+}
+.thyroid { 
+  top: 27%; 
+  left: 50%; 
+}
+.liver { 
+  top: 47%; 
+  left: 44%; /* Placed in her upper right quadrant (viewer's left) */
+}
+.adrenals { 
+  top: 48%; 
+  left: 56%; /* Balanced opposite the liver in the mid-abdomen */
+}
+.ovaries-right { 
+  top: 62%; 
+  left: 44%; /* Anatomical right pelvic region */
+}
+.ovaries-left { 
+  top: 62%; 
+  left: 56%; /* Anatomical left pelvic region */
+}
+.uterus { 
+  top: 64%; 
+  left: 50%; /* Deep center lower pelvis */
+}
+.gut { 
+  top: 72%; 
+  left: 50%; /* Lower abdominal digestive tract baseline */
+}
+
+/* ==========================================================================
+   3. BIOLOGICAL INDICATORS (PINK & TOUCH OF BLUE THEME)
+   ========================================================================== */
+.indicators-section {
+  padding: 28px 22px 0;
+}
+
+.section-subtitle {
+  color: #1d4f80;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.section-intro-text {
+  color: #7d6a74;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.indicators-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.indicator-card {
+  background: white;
+  border-radius: 20px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 22px rgba(224, 122, 138, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.indicator-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(224, 122, 138, 0.14);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.indicator-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.indicator-card:hover .indicator-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.drop-pink { background: #fff0f4; color: #ef4f7a; }
+.wave-blue { background: #f0f6ff; color: #1d4f80; } 
+.flash-rose { background: #fff0f4; color: #d92e63; }
+
+.indicator-card h4 {
+  color: #4a333f;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.arrow-indicator {
+  color: #c4b4bc;
+  font-size: 12px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+}
+
+.indicator-card:hover .arrow-indicator {
+  color: #1d4f80;
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   4. ELASTIC DRAW-UP POPUP INFOPANEL
+   ========================================================================== */
+.info-panel{
+  position:fixed;
+  left:50%;
+  bottom:-100%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:390px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-top-left-radius:34px;
+  border-top-right-radius:34px;
+  padding:16px 24px 40px; /* Streamlined bottom padding since nav bar space is freed */
+  box-shadow: 0 -15px 40px rgba(183, 91, 104, 0.15);
+  z-index:999;
+  /* Premium Elastic spring response timing curve curve */
+  transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.info-panel.open{ 
+  bottom:0; 
+}
+
+.drag-handle {
+  width: 36px;
+  height: 5px;
+  background: #e5d8dd;
+  border-radius: 3px;
+  margin: 0 auto 16px;
+}
+
+.close-panel{
+  position:absolute;
+  top:18px;
+  right:20px;
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:50%;
+  background:#fff0f4;
+  color:#ef4f7a;
+  font-size:14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.close-panel:hover {
+  transform: rotate(90deg);
+  background: #ffe1e8;
+}
+
+.panel-icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ef8ea0,#f7c4cf);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  margin-bottom:16px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.info-panel.open .panel-icon {
+  transform: scale(1) rotate(0deg);
+}
+
+/* Stagger initial scale states on closed cycles to trigger crisp activation visibility */
+.info-panel:not(.open) .panel-icon {
+  transform: scale(0.5) rotate(-15deg);
+}
+
+.info-panel h2{
+  color:#1d4f80;
+  font-size:25px;
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:18px;
+  padding-right: 36px;
+}
+
+.panel-block{
+  background:#fff5f7;
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:12px;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Premium Content Stagger Stems */
+.info-panel.open .panel-block {
+  opacity: 1;
+  transform: translateY(0);
+}
+.info-panel.open .panel-block:nth-of-type(1) { transition-delay: 0.1s; }
+.info-panel.open .panel-block:nth-of-type(2) { transition-delay: 0.2s; }
+
+.panel-block h4{
+  color:#ef4f7a;
+  font-size:12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom:8px;
+}
+
+.panel-block p{
+  color:#6d5260;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.auxiliary-block {
+  background:#f4f8fc; 
+}
+.auxiliary-block h4 {
+  color: #1d4f80;
+}
+
+.medical-note{
+  color:#9b7d88;
+  font-size:11px;
+  text-align:center;
+  margin-top:16px;
+}
+
+/* ==========================================================================
+   5. REAL-TIME SEARCH COMPONENT & GLOW HIGHLIGHTS
+   ========================================================================== */
+.search-section {
+  padding: 20px 22px 4px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  padding: 0 16px;
+  box-shadow: 0 8px 24px rgba(224, 122, 138, 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: #1d4f80;
+  box-shadow: 0 8px 30px rgba(29, 79, 128, 0.12);
+}
+
+.search-icon {
+  color: #c4b4bc;
+  font-size: 15px;
+  margin-right: 12px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  height: 48px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #4a333f;
+}
+
+.search-wrapper input::placeholder {
+  color: #a3929c;
+}
+
+.clear-search-btn {
+  background: none;
+  border: none;
+  color: #c4b4bc;
+  cursor: pointer;
+  padding: 4px;
+  display: none; /* Controlled dynamically via JS */
+  font-size: 14px;
+}
+
+.clear-search-btn:hover {
+  color: #ef4f7a;
+}
+
+.search-metrics {
+  font-size: 11px;
+  color: #1d4f80;
+  margin-top: 6px;
+  padding-left: 6px;
+  font-weight: 500;
+  min-height: 16px;
+}
+
+/* SEARCH ACTIVE STATES */
+.map-point.search-fade,
+.indicator-card.search-fade {
+  opacity: 0.25;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+.map-point.search-match {
+  background: #1d4f80 !important;
+  transform: translateX(-50%) translateY(-50%) scale(1.4);
+  box-shadow: 0 0 15px rgba(29, 79, 128, 0.6);
+}
+
+.indicator-card.search-match {
+  border-color: #1d4f80;
+  background: #fdffff;
+  box-shadow: 0 8px 22px rgba(29, 79, 128, 0.1);
+}
+
+/* PREMIUM HIGHLIGHT MARKER */
+mark.encyclopedia-highlight {
+  background: linear-gradient(120deg, rgba(29, 79, 128, 0.18) 0%, rgba(29, 79, 128, 0.25) 100%);
+  border-bottom: 2px solid #1d4f80;
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   6. PREMIUM METABOLIC INFO MODAL SYSTEM
+   ========================================================================== */
+.info-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 51, 63, 0.4);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), backdrop-filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.info-modal-overlay.modal-open {
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.info-modal-card {
+  width: 100%;
+  max-width: 342px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 28px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(74, 51, 63, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.info-modal-overlay.modal-open .info-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #f4f8fc;
+  color: #1d4f80;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  transform: rotate(90deg);
+  background: #e2eefe;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #fff0f4;
+  padding-bottom: 14px;
+}
+
+.modal-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #f0f6ff;
+  color: #1d4f80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.modal-header h3 {
+  color: #1d4f80;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff0f4;
+  color: #ef4f7a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-row p {
+  color: #6d5260;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.modal-footer-note {
+  font-size: 11px;
+  color: #9b7d88;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.4;
+  border-top: 1px solid #fff0f4;
+  padding-top: 12px;
+}
+
+/* Ensure the grid card acts as a clean flexbox layout */
+.indicator-card[data-topic="blood-clots"] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* The custom deep wine-red thematic icon container */
+.indicator-card[data-topic="blood-clots"] .clots-theme {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8b0000, #d92e63);
+    color: #ffffff !important;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+}
+
+/* Card Content Typography Alignment */
+.indicator-card[data-topic="blood-clots"] .card-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.indicator-card[data-topic="blood-clots"] .card-content p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #666666;
+    line-height: 1.4;
+}
+
+/* Smooth Interactive Hover State */
+.indicator-card[data-topic="blood-clots"]:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.08);
+}

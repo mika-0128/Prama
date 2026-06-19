@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Log In</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/signup.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="background-overlay"></div>
+
+  <div class="hero-content">
+
+    <div class="logo">
+
+      <h1>
+        Pram<span class="leaf-a">a</span>
+      </h1>
+
+      <p>
+        YOUR PCOS WELLNESS COMPANION
+      </p>
+
+      <div class="line-divider">
+        <span></span>
+        ✦
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="login-card">
+
+    <h2>
+      Welcome Back
+    </h2>
+
+    <p class="subtitle">
+      Glad to see you again
+    </p>
+
+    <!-- EMAIL -->
+
+    <div class="input-group">
+
+      <label>
+        Email Address
+      </label>
+
+      <div class="input-box">
+
+        <i class="fa-regular fa-envelope"></i>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="hello@prama.com"
+          autocomplete="off"
+        >
+
+      </div>
+
+    </div>
+
+    <!-- PASSWORD -->
+
+    <div class="input-group">
+
+      <label>
+        Password
+      </label>
+
+      <div class="input-box">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        >
+
+        <button
+          class="eye-btn"
+          id="togglePassword"
+          type="button"
+        >
+          <i class="fa-regular fa-eye"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- OPTIONS -->
+
+    <div class="options">
+
+      <label class="remember">
+
+        <input type="checkbox">
+
+        Remember me
+
+      </label>
+
+      <a href="#">
+        Forgot Password?
+      </a>
+
+    </div>
+
+    <!-- LOGIN BUTTON -->
+
+    <button
+      class="signin-btn"
+      id="loginBtn"
+      type="button"
+    >
+
+      <span>
+        Log In
+      </span>
+
+      <div class="arrow-circle">
+        <i class="fa-solid fa-arrow-right"></i>
+      </div>
+
+    </button>
+
+    <p class="auth-link">
+
+      Don't have an account?
+
+      <a href="signup.html">
+        Sign Up
+      </a>
+
+    </p>
+
+  </div>
+
+</div>
+
+<script type="module" src="js/login.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}
+</script>
+
+</body>
+</html>

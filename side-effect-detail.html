@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Side Effect Detail</title>
+
+  <link rel="stylesheet" href="css/side-effect-detail.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <div class="top-bar">
+      <a href="side-effects.html" class="circle-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
+
+      <button class="circle-btn">
+        <i class="fa-regular fa-bookmark"></i>
+      </button>
+    </div>
+
+    <div class="detail-title">
+      <div class="main-icon" id="detailIcon">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </div>
+
+      <h1 id="effectTitle">Loading...</h1>
+
+      <span id="effectCategory">Category</span>
+    </div>
+
+  </section>
+
+  <section class="content-section">
+
+    <div class="info-card">
+      <h3>What is it?</h3>
+      <p id="whatText"></p>
+    </div>
+
+    <div class="info-card">
+      <h3>Why it happens</h3>
+      <p id="whyText"></p>
+    </div>
+
+    <div class="info-card">
+      <h3>How to manage it</h3>
+      <p id="manageText"></p>
+    </div>
+
+    <div class="info-card">
+      <h3>When to see a doctor</h3>
+      <p id="doctorText"></p>
+    </div>
+
+    <div class="plan-card" id="planCard">
+      <h3>Personalized Support</h3>
+      <p>
+        Prama can recommend diet and exercise plans using an ML / Decision Tree based approach depending on your symptoms, goals, body details, and health conditions.
+      </p>
+
+      <a href="diet-planner.html">
+        Get My Personalized Plan
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="note-card">
+      <i class="fa-solid fa-shield-heart"></i>
+      <p>
+        This information is educational only and does not replace professional medical advice.
+      </p>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="js/side-effect-detail.js"></script>
+
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('[SW] Registered:', reg.scope))
+        .catch(err => console.warn('[SW] Registration failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>

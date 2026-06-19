@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <title>Prama Doctors</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/doctors.css?v=4">
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <div class="top-bar">
+      <div>
+        <p class="welcome-text">Doctors Near You</p>
+        <h1>Find Care</h1>
+      </div>
+
+      <button class="notification-btn">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+    </div>
+
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search doctors, clinics..." id="doctorSearch">
+      </div>
+
+      <button class="filter-btn" id="filterBtn">
+        <i class="fa-solid fa-sliders"></i>
+     </button>
+    </div>
+    <div class="filter-panel" id="filterPanel">
+      <button data-sort="relevance">Relevant</button>
+      <button data-sort="rating">Top Rated</button>
+     <button data-sort="googleReviews">Google Reviews</button>
+     <button data-sort="pramaReviews">Prama Reviews</button>
+      <button data-sort="distance">Nearest</button>
+    </div>
+  </section>
+
+  <section class="location-section">
+    <div class="location-card">
+      <div class="location-left">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <p>Current Location</p>
+          <span id="userLocation">Detecting location...</span>
+        </div>
+      </div>
+
+      <button class="change-btn" id="changeLocationBtn">Change</button>
+    </div>
+  </section>
+
+  <section class="specialist-section">
+    <div class="section-header">
+      <h3>Recommended Specialists</h3>
+    </div>
+
+    <div class="specialist-grid">
+      <button class="special-card">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>Gynecologist</span>
+      </button>
+
+      <button class="special-card">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>PCOS Specialist</span>
+      </button>
+
+      <button class="special-card">
+        <i class="fa-solid fa-vial-circle-check"></i>
+        <span>Endocrinologist</span>
+      </button>
+
+      <button class="special-card">
+        <i class="fa-solid fa-apple-whole"></i>
+        <span>Nutritionist</span>
+      </button>
+
+      <button class="special-card">
+        <i class="fa-solid fa-brain"></i>
+        <span>Mental Health</span>
+      </button>
+    </div>
+
+    <div class="specialist-info" id="specialistInfo">
+      <p>Select a specialist to understand why they may be recommended.</p>
+    </div>
+  </section>
+
+  <section class="doctor-section">
+    <div class="section-header">
+      <h3>Doctors Near You</h3>
+      <button class="refresh-btn">Refresh</button>
+    </div>
+
+    <div class="doctor-list" id="doctorList"></div>
+  </section>
+
+  <section class="map-section">
+    <div class="section-header">
+      <h3>Nearby Clinics Map</h3>
+    </div>
+
+    <button class="map-placeholder" id="openMapBtn">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <p>Open nearby women’s health clinics on Google Maps</p>
+    </button>
+  </section>
+
+  <nav class="bottom-nav">
+    <a href="home.html" class="nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="tracking.html" class="nav-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Track</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item active">
+      <i class="fa-solid fa-user-doctor"></i>
+      <span>Doctors</span>
+    </a>
+
+    <a href="articles.html" class="nav-item">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Learn</span>
+    </a>
+
+    <a href="community.html" class="nav-item">
+      <i class="fa-solid fa-users"></i>
+      <span>Community</span>
+    </a>
+  </nav>
+
+  <div class="doctor-modal" id="doctorModal">
+    <div class="doctor-modal-card">
+
+      <button class="modal-close" id="modalClose">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-icon">
+        <i class="fa-solid fa-user-doctor"></i>
+      </div>
+
+      <h3 id="modalDoctorName">Doctor Name</h3>
+      <p id="modalDoctorType">Specialist</p>
+
+      <div class="rating-box">
+        <div>
+          <strong id="modalGoogleRating">--</strong>
+          <span>Google Rating</span>
+        </div>
+
+        <div>
+          <strong id="modalPramaRating">--</strong>
+          <span>Prama Rating</span>
+        </div>
+      </div>
+
+      <p class="modal-clinic" id="modalClinic">Clinic</p>
+      <p class="modal-location" id="modalLocation">Location</p>
+
+      <div class="doctor-reviews" id="doctorReviews"></div>
+
+      <div class="review-form">
+        <label>Your Rating</label>
+        <select id="reviewRating">
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="1">1 Star</option>
+        </select>
+
+        <label>Your Review</label>
+        <textarea id="reviewText" placeholder="Write your review..."></textarea>
+
+        <button id="submitReviewBtn">Submit Review</button>
+      </div>
+
+      <button class="book-btn" id="openDoctorMapBtn">
+        Open Clinic on Map
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="js/doctors.js?v=4"></script>
+
+</body>
+</html>

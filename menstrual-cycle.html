@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA Metadata -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Ultimate Body Map</title>
+
+  <link rel="stylesheet" href="css/bodymap.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <!-- HERO TOP BAR -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="top-bar">
+      <a href="home.html" class="back-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
+      <div class="title-box">
+        <p>Endocrine & Cycle Encyclopedia</p>
+        <h1>Body Map</h1>
+      </div>
+      <button class="info-btn">
+        <i class="fa-solid fa-circle-info"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- LUXURY ENCYCLOPEDIA SEARCH ACCELERATOR -->
+  <section class="search-section">
+    <div class="search-wrapper">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="dbSearch" placeholder="Search biological terms (e.g., Estrogen, Gut)..." autocomplete="off">
+      <button id="clearSearch" class="clear-search-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="searchMetrics" class="search-metrics"></div>
+  </section>
+
+  <!-- INTERACTIVE BODY MAP VIEWER -->
+  <section class="bodymap-section">
+    <p class="instruction">
+      Tap any neural, metabolic, or reproductive hotspot to unlock its underlying structural role in your cycle.
+    </p>
+
+    <div class="body-card">
+      <div class="body-wrapper">
+        <img src="image/bodymap-women.png" alt="Female body map" class="body-image">
+
+        <!-- 8 SYSTEMIC METABOLIC & REPRODUCTIVE HOTSPOTS -->
+        <button class="map-point brain" data-title="Hypothalamic-Pituitary Command" data-role="The Hypothalamus and Pituitary Gland act as the central processing unit of your cycle. The hypothalamus pulses Gonadotropin-Releasing Hormone (GnRH), which commands the pituitary gland to release Follicle-Stimulating Hormone (FSH) and Luteinizing Hormone (LH)." data-issue="This neuroendocrine loop coordinates the entire timeline. If stress, poor sleep, or under-fueling disrupts the brain, these pulses can stall, leading to delayed or entirely skipped periods."></button>
+
+        <button class="map-point thyroid" data-title="Thyroid Metabolic Baseline" data-role="The Thyroid gland establishes the cellular metabolic baseline for your entire body. Every hormone-producing tissue, including your ovaries, relies directly on thyroid hormones (T3 and T4) to power its internal cellular machinery at optimal speeds." data-issue="If your thyroid underperforms (hypothyroidism) or overperforms (hyperthyroidism), it can alter ovulation pacing, cause heavy or light flows, and lead to cycle fatigue or baseline temperature imbalances."></button>
+
+        <button class="map-point liver" data-title="Liver Metabolic Clearance Plant" data-role="The Liver is your biological purification plant responsible for deactivating and processing circulating sex hormones. Once estrogen and progesterone complete their cellular messages, the liver breaks them down into water-soluble byproducts for safe excretion." data-issue="If clearance pathways are overburdened or sluggish, deactivated estrogen can back up in the bloodstream. This accumulation can amplify pre-period breast tenderness, skin blemishes, and heavy bleeding patterns."></button>
+
+        <button class="map-point adrenals" data-title="Adrenal Stress Axis" data-role="The Adrenal Glands sit atop the kidneys and regulate your physical and mental stress responses by manufacturing Cortisol and DHEA. Under stress, the body prioritizes survival over reproduction, utilizing shared cellular resources to produce cortisol." data-issue="Elevated cortisol levels directly interfere with the brain's hormone signaling. This can downregulate ovulation, cause low progesterone levels, and lengthen your cycle window."></button>
+
+        <button class="map-point ovaries-left" data-title="Ovarian Follicular Vault (Left)" data-role="The Left Ovary houses thousands of immature microscopic fluid-filled sacs called follicles, each protecting a single egg cell. Influenced by FSH, a handful of these follicles begin maturing every month, competing to become the single dominant egg." data-issue="As these follicles grow, they synthesize Estrogen, which dynamically rebuilds your uterine lining and initiates the production of fertile cervical discharge."></button>
+
+        <button class="map-point ovaries-right" data-title="Ovarian Luteal Vault (Right)" data-role="The Right Ovary alternates or coordinates to mature eggs. Once ovulation occurs and the egg is released, the empty follicle shell left behind transforms into a temporary endocrine gland called the Corpus Luteum." data-issue="The Corpus Luteum produces Progesterone. Progesterone stabilizes your uterine lining, maintains your resting body temperature, and supports emotional stability during your luteal phase."></button>
+
+        <button class="map-point uterus" data-title="Uterine Endometrium" data-role="The Uterus is a specialized muscular organ lined by a vascular, nutrient-dense tissue cushion called the Endometrium. Each month, this lining thickens under the influence of estrogen to prepare a supportive environment for a potential pregnancy." data-issue="If fertilization signals do not occur, the corpus luteum dissolves, causing hormone levels to drop. This sudden drop triggers the controlled shedding of the endometrial layer, resulting in your period."></button>
+
+        <button class="map-point gut" data-title="The Gut & Estrobolome Axis" data-role="The Digestive Tract contains a specialized sub-community of gut bacteria and metabolic enzymes known as the Estrobolome. The estrobolome regulates the final processing and elimination of old estrogens from the human body." data-issue="If your gut microbiome is imbalanced or digestion slows (constipation), excreted estrogen can re-enter the bloodstream through the intestinal walls, leading to hormone imbalances and digestive discomfort."></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6-CARD ADVANCED BIOLOGICAL INDICATORS GRID -->
+  <section class="indicators-section">
+    <h3 class="section-subtitle">Cycle Biological Functions</h3>
+    <p class="section-intro-text">Tap any core biomarker category below to explore the underlying physiological changes that occur throughout your cycle phases.</p>
+
+    <div class="indicators-grid">
+      <!-- 1. Menstrual Fluid Color -->
+      <div class="indicator-card" data-topic="fluid-color">
+        <div class="card-meta">
+          <div class="indicator-icon drop-pink"><i class="fa-solid fa-droplet"></i></div>
+          <h4>Menstrual Fluid Color</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 2. Cervical Discharge -->
+      <div class="indicator-card" data-topic="mucus-discharge">
+        <div class="card-meta">
+          <div class="indicator-icon wave-blue"><i class="fa-solid fa-water"></i></div>
+          <h4>Cervical Discharge Changes</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 3. Cramp Physiology -->
+      <div class="indicator-card" data-topic="cramp-mechanics">
+        <div class="card-meta">
+          <div class="indicator-icon flash-rose"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <h4>Cramp & Uterine Muscle Physiology</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 4. Basal Body Temperature (BBT) -->
+      <div class="indicator-card" data-topic="bbt-shift">
+        <div class="card-meta">
+          <div class="indicator-icon wave-blue"><i class="fa-solid fa-temperature-half"></i></div>
+          <h4>Basal Body Temperature (BBT)</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 5. Cervical Physical Positions -->
+      <div class="indicator-card" data-topic="cervix-position">
+        <div class="card-meta">
+          <div class="indicator-icon drop-pink"><i class="fa-solid fa-up-down-left-right"></i></div>
+          <h4>Cervical Structural Positions</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 6. Digestion & Progesterone Bloat -->
+      <div class="indicator-card" data-topic="digestive-bloat">
+        <div class="card-meta">
+          <div class="indicator-icon flash-rose"><i class="fa-solid fa-stomach"></i></div>
+          <h4>Cyclic Digestion & Bloating</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+      <!-- 6. Blood Clots -->
+      <div class="indicator-card" data-topic="blood-clots">
+        <div class="card-meta">
+          <div class="indicator-icon flash-rose"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+          <h4>Blood Clots</h4>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ELONGATED INTERACTIVE SLIDE POPUP -->
+  <section class="info-panel" id="infoPanel">
+    <div class="drag-handle"></div>
+    <button class="close-panel" id="closePanel">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="panel-icon" id="panelIcon">
+      <i class="fa-solid fa-heart-pulse"></i>
+    </div>
+
+    <h2 id="panelTitle">Tap a point</h2>
+
+    <div class="panel-block">
+      <h4 id="blockOneHeader">Primary Biological Purpose</h4>
+      <p id="panelRole">Select a highlighted point on the body map or click an indicator item to inspect biological mechanics.</p>
+    </div>
+
+    <div class="panel-block auxiliary-block" id="auxiliaryBlock">
+      <h4 id="blockTwoHeader">Hormonal Interaction</h4>
+      <p id="panelIssue">Educational data grids compile context dynamically here.</p>
+    </div>
+
+    <p class="medical-note">Educational only. Not a medical diagnostic tool.</p>
+  </section>
+
+  <div id="infoModal" class="info-modal-overlay">
+    <div class="info-modal-card">
+      <button id="closeModal" class="close-modal-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Using the Encyclopedia</h3>
+      </div>
+
+      <div class="modal-body">
+        <div class="step-row">
+          <div class="step-num">1</div>
+          <p><strong>Interactive Anatomy:</strong> Tap any pulsing hot-spot ring over the body silhouette to explore how that organ controls or responds to endocrine signals.</p>
+        </div>
+        <div class="step-row">
+          <div class="step-num">2</div>
+          <p><strong>Biomarker Ledgers:</strong> Scroll to the lower grid and tap cards to inspect fluid properties, body temperature variations, and cyclic digestive shifts.</p>
+        </div>
+        <div class="step-row">
+          <div class="step-num">3</div>
+          <p><strong>Cross-Reference Search:</strong> Enter parameters like "Estrogen" into the search bar. Elements containing that term instantly pop out while non-matches drop visibility.</p>
+        </div>
+      </div>
+      
+      <p class="modal-footer-note">All data is compiled from peer-reviewed endocrinology publications and structured for clinical transparency.</p>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script src="js/bodymap.js"></script>
+
+</body>
+</html>

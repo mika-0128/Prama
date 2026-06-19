@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Home</title>
+
+  <!-- ICONS -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="css/home.css"
+  >
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="top-bar">
+
+      <div>
+
+        <p class="greeting">
+          Welcome to
+        </p>
+
+        <h1>
+          Prama 
+        </h1>
+
+      </div>
+
+      <button class="search-btn">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+      </button>
+
+    </div>
+
+    <p class="today-date" id="todayDate">Loading date...</p>
+
+    <!-- CYCLE OVERVIEW -->
+
+    <div class="cycle-card">
+
+           <div>
+
+             <p class="small-text">
+                 Cycle Overview
+              </p>
+
+    <h2 id="cyclePhase">
+      No Data Yet
+    </h2>
+
+    <p class="small-text" id="cyclePrediction">
+      Start tracking to see predictions
+    </p>
+
+  </div>
+
+  <div class="cycle-ring">
+
+    <span id="cycleDayBadge">
+      --
+    </span>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+
+  <section class="dashboard-section">
+
+  <div class="section-header">
+
+    <div>
+      <h3>Main Features</h3>
+      <p>Explore Prama’s core tools</p>
+    </div>
+
+  </div>
+
+  <div class="dashboard-grid">
+
+    <!-- BODY MAP -->
+
+    <a href="menstrual-cycle.html" class="dashboard-card">
+
+      <div class="card-icon">
+        <i class="fa-solid fa-person"></i>
+      </div>
+
+      <div class="card-info">
+        <h4>Menstrual Cycle</h4>
+        <span>
+          Learn about your body, cycle, and more
+        </span>
+      </div>
+
+    </a>
+
+    <!-- SIDE EFFECTS -->
+
+    <a href="side-effects.html" class="dashboard-card">
+
+      <div class="card-icon">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </div>
+
+      <div class="card-info">
+        <h4>Side Effects</h4>
+        <span>
+          Understand symptoms and changes
+        </span>
+      </div>
+
+    </a>
+
+    <!-- DOCUMENTATION -->
+
+    <a href="documents.html" class="dashboard-card">
+
+      <div class="card-icon">
+        <i class="fa-solid fa-file-medical"></i>
+      </div>
+
+      <div class="card-info">
+        <h4>Documentation</h4>
+        <span>
+          Learn reports and medical terms
+        </span>
+      </div>
+
+    </a>
+
+    <!-- MENSTRUAL ISSUES -->
+
+    <a href="mental-health.html" class="dashboard-card">
+
+    <div class="card-icon">
+      <i class="fa-solid fa-brain"></i>
+    </div>
+
+     <div class="card-info">
+
+    <h4>Mental Health</h4>
+
+    <span>
+      Mental wellbeing, stress, anxiety and emotional health
+    </span>
+
+  </div>
+
+</a>
+
+  </div>
+
+</section>
+  <!-- INSIGHTS -->
+
+  <section class="dynamic-section">
+
+    <div class="section-header">
+
+      <h3>
+        Insights
+      </h3>
+
+    </div>
+
+    <div class="insight-card">
+
+  <div class="insight-card" id="personalInsightCard">
+
+  <div class="insight-row">
+    <span>Insight</span>
+    <strong id="personalInsightTitle">
+      Start Tracking
+    </strong>
+  </div>
+
+  <p id="personalInsightText">
+    Add period dates to unlock personalized insights.
+  </p>
+
+</div>
+
+</div>
+
+    <section class="insights-section">
+
+  <div class="section-header">
+    <h3>Cycle Insights</h3>
+  </div>
+
+  <div class="insight-card">
+
+    <div class="insight-row">
+      <span>Average Cycle</span>
+      <strong id="homeAverageCycle">No Data</strong>
+    </div>
+
+    <div class="insight-row">
+      <span>Last Period Length</span>
+      <strong id="homePeriodLength">No Data</strong>
+    </div>
+
+    <div class="insight-row">
+      <span>Status</span>
+      <strong id="homeCycleStatus">Start tracking</strong>
+    </div>
+
+    <div class="mini-chart" id="cycleMiniChart"></div>
+
+  </div>
+
+  <a
+     href="tracking.html"
+      class="view-tracking-btn"
+    > 
+     View Tracking
+  </a>
+
+</section>
+
+  </section>
+
+  
+
+  <!-- NAVIGATION -->
+
+  <nav class="bottom-nav">
+
+    <a href="home.html" class="nav-item active">
+
+      <i class="fa-solid fa-house"></i>
+
+      <span>
+        Home
+      </span>
+
+    </a>
+
+    <a href="tracking.html" class="nav-item">
+
+      <i class="fa-solid fa-chart-line"></i>
+
+      <span>
+        Track
+      </span>
+
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+
+      <i class="fa-solid fa-user-doctor"></i>
+
+      <span>
+        Doctors
+      </span>
+
+    </a>
+
+    <a href="articles.html" class="nav-item">
+
+      <i class="fa-solid fa-book-open"></i>
+
+      <span>
+        Learn
+      </span>
+
+    </a>
+
+    <a href="community.html" class="nav-item">
+
+      <i class="fa-solid fa-users"></i>
+
+      <span>
+        Community
+      </span>
+
+    </a>
+
+  </nav>
+
+</div>
+ 
+<script type="module" src="js/home.js"></script>
+
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('[SW] Registered:', reg.scope))
+        .catch(err => console.warn('[SW] Registration failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!-- quiz.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Quiz</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+
+  <link rel="stylesheet" href="css/quiz.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="background-overlay"></div>
+
+    <div class="top-section">
+
+      <div class="logo-text">
+        <h1>Pram<span class="leaf-a">a</span></h1>
+      </div>
+
+      <p class="subtitle">EMPOWERING YOUR WELLNESS</p>
+
+      <div class="progress-wrapper">
+        <p id="progress-text">Question 1 of 4</p>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="quiz-card">
+
+      <div class="question-area">
+        <div class="quote">“</div>
+
+        <!-- FIX: ID KEPT SAME -->
+        <h1 id="question">Loading...</h1>
+
+        <div class="divider"></div>
+      </div>
+
+      <!-- BIRTHDAY -->
+      <div class="birthday-wrapper" id="birthday-wrapper">
+        <input type="date" id="birthday-input">
+      </div>
+
+      <!-- OPTIONS -->
+      <div class="options" id="options"></div>
+
+      <!-- NEXT -->
+      <button class="next-btn" id="next-btn">
+        <span id="button-text">Next Question</span>
+
+        <div class="arrow-circle">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </button>
+
+      <!-- SKIP -->
+      <button class="skip-btn" type="button">
+        Skip Quiz
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="js/quiz.js"></script>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('[SW] Registered:', reg.scope))
+          .catch(err => console.warn('[SW] Registration failed:', err));
+      });
+    }
+  </script>
+
+</body>
+</html>

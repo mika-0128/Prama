@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prama Documents</title>
+  <link rel="stylesheet" href="css/documents.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+<div class="app-container">
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="top-bar">
+      <a href="home.html" class="circle-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
+      <div class="title-box">
+        <p>Health Records</p>
+        <h1>Documents</h1>
+      </div>
+      <button class="circle-btn">
+        <i class="fa-solid fa-shield-heart"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="mode-section">
+    <button class="mode-btn active" data-mode="simplify">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      Simplify Doc
+    </button>
+    <button class="mode-btn" data-mode="vault">
+      <i class="fa-solid fa-folder-open"></i>
+      Save Files
+    </button>
+  </section>
+
+  <section class="page-section active-section" id="simplifySection">
+    <div class="form-card">
+      <h3>Simplify Report</h3>
+      
+      <label>Report Type</label>
+      <select id="reportType">
+        <option value="">Select report type</option>
+        <option value="blood">Blood Test</option>
+        <option value="scan">Scan</option>
+        <option value="doctor">Doctor Sheet</option>
+      </select>
+
+      <label>Date Taken</label>
+      <input type="date" id="reportDate" />
+
+      <label>Cycle Timing</label>
+      <select id="cycleTiming">
+        <option value="">When in your cycle?</option>
+        <option value="period">During period</option>
+        <option value="follicular">Follicular phase</option>
+        <option value="ovulation">Around ovulation</option>
+        <option value="luteal">Luteal phase</option>
+        <option value="unknown">Not sure</option>
+      </select>
+
+      <div id="dynamicFields"></div>
+
+      <button class="primary-btn" id="explainBtn">
+        <i class="fa-solid fa-wand-magic-sparkles" style="margin-right: 8px;"></i> Explain My Report
+      </button>
+    </div>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-icon">
+        <i class="fa-solid fa-file-medical"></i>
+      </div>
+      <h3>Report Explanation</h3>
+      <p id="resultText">
+        Enter report details to see a simple explanation here.
+      </p>
+      <div class="note-box">
+        Educational only. Always confirm results with a qualified doctor.
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="vaultSection">
+    <div class="upload-card">
+      <div class="upload-icon">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </div>
+      <h3>Upload Medical File</h3>
+      <p>Store prescriptions, reports, scans, and doctor sheets securely.</p>
+      <label class="upload-btn">
+        Choose File
+        <input type="file" id="fileInput" hidden />
+      </label>
+      <span id="fileName" class="file-name">No file selected</span>
+    </div>
+
+    <div class="form-card">
+      <h3>File Details</h3>
+      
+      <label>File Type</label>
+      <select id="fileType">
+        <option value="">Select file type</option>
+        <option value="Doctor Sheet">Doctor Sheet</option>
+        <option value="Blood Test">Blood Test</option>
+        <option value="Scan">Scan</option>
+        <option value="Prescription">Prescription</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Date Taken</label>
+      <input type="date" id="dateTaken" />
+
+      <label>Related Dates</label>
+      <input type="text" id="relatedDates" placeholder="Example: 2026-05-14, 2026-06-02" />
+
+      <label>Custom Tags</label>
+      <input type="text" id="customTags" placeholder="Example: PCOS, hormones, follow-up" />
+
+      <button class="primary-btn" id="saveFileBtn">
+        Save Document
+      </button>
+    </div>
+
+    <section class="saved-section">
+      <div class="saved-top">
+        <div>
+          <h3>Saved Files</h3>
+          <p id="savedCount">0 files</p>
+        </div>
+        <select id="sortFiles">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="type">Type</option>
+        </select>
+      </div>
+
+      <div class="saved-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchFiles" placeholder="Search tags or file names..." />
+      </div>
+
+      <div class="empty-card" id="savedEmpty">
+        <i class="fa-solid fa-folder"></i>
+        <p>Saved documents will appear here.</p>
+      </div>
+
+      <div class="saved-list" id="savedList"></div>
+    </section>
+  </section>
+
+  <div class="image-modal" id="imageModal">
+    <button class="modal-close" id="modalClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button class="modal-arrow left" id="prevImage">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <img id="modalImage" src="" alt="Preview">
+    <button class="modal-arrow right" id="nextImage">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+</div>
+
+<script src="js/documents.js"></script>
+</body>
+</html>

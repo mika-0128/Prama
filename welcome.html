@@ -1,0 +1,130 @@
+<!-- welcome.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prama">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Prama Welcome</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/welcome.css">
+
+  <!-- Icons -->
+  <link
+  rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+   />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- BACKGROUND -->
+
+    <div class="background-overlay"></div>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+      <div class="logo">
+
+        <h1>
+          Pram<span class="leaf-a">a</span>
+        </h1>
+
+        <p>YOUR PCOS WELLNESS COMPANION</p>
+
+      </div>
+
+    </div>
+
+    <!-- GLASS CARD -->
+
+    <div class="welcome-card">
+
+      <!-- IMAGE -->
+
+      <!-- TEXT -->
+
+      <h2>Welcome to Prama</h2>
+
+      <p class="description">
+        Your personalized PCOS wellness companion designed to help you understand your body, track symptoms, build healthier habits, and support your wellness journey with care and guidance.
+      </p>
+
+      <!-- FEATURES -->
+
+      <div class="features">
+
+        <div class="feature">
+          <i class="fa-solid fa-heart-pulse"></i>
+          Symptom Tracking
+        </div>
+
+        <div class="feature">
+          <i class="fa-solid fa-seedling"></i>
+          Wellness Guidance
+        </div>
+
+        <div class="feature">
+          <i class="fa-solid fa-chart-line"></i>
+          Health Insights
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+
+      <button class="quiz-btn">
+
+        <span>Take Personal Quiz</span>
+
+        <div class="arrow-circle">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </button>
+
+      <!-- SKIP -->
+
+      <button class="skip-btn">
+        Skip for now
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="js/welcome.js"></script>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('[SW] Registered:', reg.scope))
+          .catch(err => console.warn('[SW] Registration failed:', err));
+      });
+    }
+  </script>
+
+</body>
+</html>

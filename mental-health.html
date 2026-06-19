@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prama Safe Space</title>
+  
+  <meta name="theme-color" content="#c084fc">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <link rel="stylesheet" href="css/mental-health.css">
+
+  <style>
+    /* New Interactive Styles */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: #1d4f80;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 13.5px;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Stigma Smasher Cards */
+    .stigma-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .stigma-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      perspective: 1000px;
+      height: 160px;
+    }
+
+    .stigma-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .stigma-card.flipped .stigma-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .stigma-front, .stigma-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .stigma-front {
+      background: #fdfbf7;
+      color: #555;
+      border: 1px dashed #ccc;
+      font-style: italic;
+    }
+
+    .stigma-back {
+      background: rgba(192, 132, 252, 0.1);
+      color: #1d4f80;
+      transform: rotateY(180deg);
+      border: 1px solid #c084fc;
+      font-weight: 500;
+    }
+
+    /* Interactive Stats Bar */
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(239, 142, 160, 0.1);
+      color: #d16b7e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    
+    .stat-pill i {
+      margin-right: 6px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <header class="subpage-pink-header" style="background: linear-gradient(135deg, rgba(239, 142, 160, 0.15), rgba(192, 132, 252, 0.15)); padding-bottom: 30px;">
+    <div class="hero-overlay"></div>
+    <div class="subpage-nav-row">
+      <a href="home.html" class="subpage-back-btn" style="color: #1d4f80;"><i class="fa-solid fa-chevron-left"></i> Home</a>
+      <span class="subpage-badge" style="background: white; color: #c084fc;">Mind & Body</span>
+    </div>
+    <h2 class="subpage-title" style="color: #1d4f80; font-family: 'Cormorant Garamond', serif; font-size: 32px;">Your Safe Space</h2>
+    <p class="subpage-subtitle" style="color: #555;">You are seen, heard, and deeply understood.</p>
+  </header>
+
+  <main class="main-content" style="margin-top: -20px; position: relative; z-index: 2;">
+    
+    <!-- Interactive Stigma Smasher -->
+    <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 24px;">
+      <h3 class="section-title">Break the Stigma</h3>
+      <p class="section-desc">Tap on the unhelpful things people say to reveal the medical truth.</p>
+      
+      <div class="stigma-grid">
+        <div class="stigma-card" onclick="this.classList.toggle('flipped')">
+          <div class="stigma-card-inner">
+            <div class="stigma-front">"If you're getting a period, you're totally fine."</div>
+            <div class="stigma-back">A period doesn't guarantee ovulation. It is okay to seek deeper answers about your cycle.</div>
+          </div>
+        </div>
+        
+        <div class="stigma-card" onclick="this.classList.toggle('flipped')">
+          <div class="stigma-card-inner">
+            <div class="stigma-front">"Hide your products, it's embarrassing."</div>
+            <div class="stigma-back">Menstrual health is human health. There is absolutely no shame in caring for your body.</div>
+          </div>
+        </div>
+        
+        <div class="stigma-card" onclick="this.classList.toggle('flipped')">
+          <div class="stigma-card-inner">
+            <div class="stigma-front">"Periods are just awful, deal with it."</div>
+            <div class="stigma-back">Chronic exhaustion and severe pain are signs your body needs support, not silence. You deserve care.</div>
+          </div>
+        </div>
+
+        <div class="stigma-card" onclick="this.classList.toggle('flipped')">
+          <div class="stigma-card-inner">
+            <div class="stigma-front">"You're just overreacting to your symptoms."</div>
+            <div class="stigma-back">You know your body best. Never let anyone minimize what you are physically and emotionally experiencing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mood Builder -->
+    <section class="mental-card">
+      <h3 class="section-title">Check in with yourself</h3>
+      <p class="section-desc">Acknowledge how you are feeling right now, without judgment.</p>
+      
+      <div class="mood-picker-container" id="moodPickerContainer">
+        <button class="mood-btn anxious" data-mood="anxious">Anxious </button>
+        <button class="mood-btn fatigued" data-mood="fatigued">Exhausted </button>
+        <button class="mood-btn pain" data-mood="pain">In Pain </button>
+        <button class="mood-btn calm" data-mood="calm">Numb / Low </button>
+      </div>
+
+      <div id="affirmationDisplayBox" class="affirmation-box" style="line-height: 1.6; transition: all 0.3s ease;">
+        "Select an emotional state above."
+      </div>
+      
+      <div id="dynamicStat" style="text-align: center; display: none;">
+        <span class="stat-pill"><i class="fa-solid fa-users"></i> <span id="statText"></span></span>
+      </div>
+    </section>
+
+    <!-- Interactive Breathing -->
+    <section class="breathing-card">
+      <h3 class="breathing-title">Nervous System Reset</h3>
+      <p class="breathing-subtitle">If you feel overwhelmed, tap below to synchronize your nervous system using a comforting breath cycle.</p>
+      <button id="breathingPacerBtn" class="breathing-circle-btn">
+        Start Breath
+      </button>
+    </section>
+
+    <!-- Diary -->
+    <section>
+      <h3 class="section-title" style="margin-bottom: 4px;">Private Emotional Diary</h3>
+      <p class="section-desc">A completely private space. Express your frustrations, track your mental exhaustion, or vent. Nobody will ever see this.</p>
+      
+      <div class="diary-input-card">
+        <textarea id="diaryInput" placeholder="Write safely here..."></textarea>
+        
+        <div class="diary-footer">
+          <span class="lock-status"><i class="fa-solid fa-lock"></i> Saved Locally</span>
+          <button id="saveDiaryBtn" class="save-entry-btn">Log Entry</button>
+        </div>
+      </div>
+
+      <div id="diaryHistoryContainer" class="history-container"></div>
+    </section>
+  </main>
+
+</div>
+
+<script src="js/mental-health.js"></script>
+</body>
+</html>
