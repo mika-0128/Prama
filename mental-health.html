@@ -17,7 +17,102 @@
   
   <link rel="stylesheet" href="css/mental-health.css">
 
- 
+ <style>
+    /* New Interactive Styles */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: #1d4f80;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 13.5px;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Stigma Smasher Cards */
+    .stigma-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .stigma-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      perspective: 1000px;
+      height: 160px;
+    }
+
+    .stigma-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .stigma-card.flipped .stigma-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .stigma-front, .stigma-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .stigma-front {
+      background: #fdfbf7;
+      color: #555;
+      border: 1px dashed #ccc;
+      font-style: italic;
+    }
+
+    .stigma-back {
+      background: rgba(192, 132, 252, 0.1);
+      color: #1d4f80;
+      transform: rotateY(180deg);
+      border: 1px solid #c084fc;
+      font-weight: 500;
+    }
+
+    /* Interactive Stats Bar */
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(239, 142, 160, 0.1);
+      color: #d16b7e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    
+    .stat-pill i {
+      margin-right: 6px;
+    }
+
+  </style>
+  
 </head>
 <body>
 
